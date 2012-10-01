@@ -1,0 +1,48 @@
+# -*- mode: python -*-
+#
+# edit this file to match your settings and copy it to ~/.jhbuildrc
+# or use it with:
+#   $ jhbuild -f this-jhbuild-file
+
+# what module set should be used.
+# but it can be any of the files in the modulesets directory, or even
+# the URL of a module set file on a web server.
+moduleset = 'https://raw.github.com/gpoo/jhbuild/master/evince.modules'
+
+# A list of the modules to build.
+modules = [ 'evince']
+
+# what directory should the source be checked out to?
+checkoutroot = os.path.join(os.environ['HOME'], 'code', 'evince', 'checkout')
+
+# the prefix to configure/install modules to (must have write access)
+prefix = os.path.join(os.environ['HOME'], 'code', 'evince', 'install')
+
+# extra arguments to pass to all autogen.sh scripts
+# to speed up builds, try '--disable-static --disable-gtk-doc'
+autogenargs=''
+
+# set CFLAGS:
+os.environ['CFLAGS'] = '-g -O2'
+
+# On SMP systems you may use something like this to improve compilation time:
+# be aware that not all modules compile correctly with make -j2
+os.environ['MAKE'] = 'make -j4'
+
+# a alternative install program to use.
+# The included install-check program won't update timestamps if the
+# header hasn't changed
+os.environ['INSTALL'] = os.path.join(os.environ['HOME'],
+                                     'bin', 'install-check')
+
+# Tips from Vincent Untz
+# http://www.vuntz.net/journal/post/2010/09/23/My-love-for-jhbuild
+#
+# Cairo can be used to debug poppler.  Used in very special cases, so
+# we skip it.
+skip = [ 'cairo' ]
+
+## Module options
+module_autogenargs['evince'] = autogenargs + ' --disable-nautilus ' + \
+                               '--without-keyring --disable-help ' + \
+                               '--enable-debug --disable-introspection '

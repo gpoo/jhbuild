@@ -1,0 +1,66 @@
+<?xml version="1.0"?><!--*- mode: nxml; indent-tabs-mode: nil -*-->
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+<!-- vim:set ts=2 expandtab: -->
+<moduleset>
+
+<!-- git repos -->
+  <repository type="git" name="git.gnome.org" default="yes"
+      href="git://git.gnome.org/"/>
+  <repository type="git" name="poppler.freedesktop.org"
+      href="git://anongit.freedesktop.org/git/poppler/"/>
+  <repository type="git" name="cairo.freedesktop.org"
+      href="git://anongit.freedesktop.org/cairo"/>
+
+  <autotools id="evince" autogenargs="--enable-introspection"
+                         supports-parallel-builds="no">
+    <branch/>
+    <dependencies>
+      <!-- <dep package="intltool"/>
+      <dep package="gtk+"/>
+      <dep package="libxml2"/>
+      <dep package="gnome-icon-theme"/> -->
+      <dep package="glib"/>
+      <dep package="poppler"/>
+      <!-- <dep package="gnome-doc-utils"/>
+      <dep package="gobject-introspection"/>
+      <dep package="nautilus"/>
+      <dep package="libgxps"/> -->
+    </dependencies>
+    <!-- <suggests>
+      <dep package="libgnome-keyring"/>
+    </suggests> -->
+  </autotools>
+
+  <autotools id="poppler" autogenargs="--enable-xpdf-headers" makeargs="POPPLER_GLIB_DISABLE_DEPRECATED=">
+    <pkg-config>poppler-glib.pc</pkg-config>
+    <branch repo="poppler.freedesktop.org" />
+  </autotools>
+
+  <autotools id="glib">
+    <branch/>
+    <!-- <dependencies>
+      <dep package="gtk-doc"/>
+    </dependencies>
+    <after>
+      <dep package="shared-mime-info"/>
+    </after> -->
+    <suggests>
+      <!-- these provide gnome implementations of glib
+           extension points -->
+      <!-- <dep package="gvfs"/>
+      <dep package="glib-networking"/> -->
+    </suggests>
+  </autotools>
+
+  <autotools id="cairo" autogenargs="--enable-xlib">
+    <pkg-config>cairo.pc</pkg-config>
+    <branch repo="cairo.freedesktop.org" />
+    <!-- <dependencies>
+      <dep package="fontconfig"/>
+      <dep package="gtk-doc"/>
+      <dep package="pixman"/>
+    </dependencies> -->
+  </autotools>
+
+</moduleset>
