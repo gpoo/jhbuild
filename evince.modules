@@ -9,8 +9,8 @@
       href="git://git.gnome.org/"/>
   <repository type="git" name="poppler.freedesktop.org"
       href="git://anongit.freedesktop.org/git/poppler/"/>
-  <repository type="git" name="cairo.freedesktop.org"
-      href="git://anongit.freedesktop.org/cairo"/>
+  <repository type="git" name="git.cairographics.org"
+      href="git://git.cairographics.org/git/"/>
 
   <autotools id="evince" autogenargs="--enable-introspection"
                          supports-parallel-builds="no">
@@ -55,7 +55,7 @@
 
   <autotools id="cairo" autogenargs="--enable-xlib">
     <pkg-config>cairo.pc</pkg-config>
-    <branch repo="cairo.freedesktop.org" />
+    <branch repo="git.cairographics.org" revision="1.12" />
     <!-- <dependencies>
       <dep package="fontconfig"/>
       <dep package="gtk-doc"/>

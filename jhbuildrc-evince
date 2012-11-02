@@ -9,6 +9,7 @@
 # the URL of a module set file on a web server.
 moduleset = 'https://raw.github.com/gpoo/jhbuild/master/evince.modules'
 
+
 # A list of the modules to build.
 modules = [ 'evince']
 
@@ -40,7 +41,7 @@ os.environ['INSTALL'] = os.path.join(os.environ['HOME'],
 #
 # Cairo can be used to debug poppler.  Used in very special cases, so
 # we skip it.
-skip = [ 'cairo' ]
+# skip = [ 'cairo' ]
 
 ## Module options
 module_autogenargs['evince'] = autogenargs + ' --disable-nautilus ' + \
