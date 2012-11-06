@@ -12,55 +12,54 @@
   <repository type="git" name="git.cairographics.org"
       href="git://git.cairographics.org/git/"/>
 
+<!-- packages -->
   <autotools id="evince" autogenargs="--enable-introspection"
                          supports-parallel-builds="no">
     <branch/>
     <dependencies>
-      <!-- <dep package="intltool"/>
-      <dep package="gtk+"/>
-      <dep package="libxml2"/>
-      <dep package="gnome-icon-theme"/> -->
       <dep package="glib"/>
       <dep package="poppler"/>
-      <!-- <dep package="gnome-doc-utils"/>
-      <dep package="gobject-introspection"/>
-      <dep package="nautilus"/>
-      <dep package="libgxps"/> -->
     </dependencies>
-    <!-- <suggests>
+    <!--
+		<suggests>
       <dep package="libgnome-keyring"/>
-    </suggests> -->
-  </autotools>
-
-  <autotools id="poppler" autogenargs="--enable-xpdf-headers" makeargs="POPPLER_GLIB_DISABLE_DEPRECATED=">
-    <pkg-config>poppler-glib.pc</pkg-config>
-    <branch repo="poppler.freedesktop.org" />
+    </suggests>
+		-->
   </autotools>
 
   <autotools id="glib">
-    <branch revision="2.34.1"/>
-    <!-- <dependencies>
-      <dep package="gtk-doc"/>
-    </dependencies>
-    <after>
-      <dep package="shared-mime-info"/>
-    </after> -->
+    <branch revision="glib-2-34"/>
     <suggests>
       <!-- these provide gnome implementations of glib
            extension points -->
-      <!-- <dep package="gvfs"/>
-      <dep package="glib-networking"/> -->
+      <dep package="gvfs"/>
+      <!-- <dep package="glib-networking"/> -->
     </suggests>
+  </autotools>
+
+  <autotools id="gvfs">
+    <branch revision="gnome-3-6"/>
+  </autotools>
+
+  <autotools id="poppler" autogenargs="--enable-xpdf-headers"
+	                        makeargs="POPPLER_GLIB_DISABLE_DEPRECATED=">
+    <pkg-config>poppler-glib.pc</pkg-config>
+    <branch repo="poppler.freedesktop.org" />
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="cairo"/>
+    </dependencies>
   </autotools>
 
   <autotools id="cairo" autogenargs="--enable-xlib">
     <pkg-config>cairo.pc</pkg-config>
     <branch repo="git.cairographics.org" revision="1.12" />
-    <!-- <dependencies>
+    <!--
+		<dependencies>
       <dep package="fontconfig"/>
-      <dep package="gtk-doc"/>
       <dep package="pixman"/>
-    </dependencies> -->
+    </dependencies>
+		-->
   </autotools>
 
 </moduleset>
