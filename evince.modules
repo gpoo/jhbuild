@@ -38,7 +38,10 @@
   </autotools>
 
   <autotools id="gvfs">
-    <branch revision="gnome-3-6"/>
+    <branch revision="gnome-3-4"/>
+    <dependencies>
+      <dep package="glib"/>
+    </dependencies>
   </autotools>
 
   <autotools id="poppler" autogenargs="--enable-xpdf-headers"
@@ -48,7 +51,12 @@
     <dependencies>
       <dep package="glib"/>
       <dep package="cairo"/>
+      <dep package="poppler-data"/>
     </dependencies>
+  </autotools>
+
+  <autotools id="poppler-data">
+    <branch repo="poppler.freedesktop.org" />
   </autotools>
 
   <autotools id="cairo" autogenargs="--enable-xlib">
