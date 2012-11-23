@@ -51,7 +51,7 @@
     <dependencies>
       <dep package="glib"/>
       <dep package="cairo"/>
-      <dep package="poppler-data"/>
+      <!-- <dep package="poppler-data"/> -->
     </dependencies>
   </autotools>
 
