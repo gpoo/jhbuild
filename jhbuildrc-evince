@@ -7,8 +7,7 @@
 # what module set should be used.
 # but it can be any of the files in the modulesets directory, or even
 # the URL of a module set file on a web server.
-# moduleset = 'https://raw.github.com/gpoo/jhbuild/master/evince.modules'
-moduleset = '/home/gpoo/code/git/build/jhbuild-evince/evince.modules'
+moduleset = 'https://raw.github.com/gpoo/jhbuild/master/evince.modules'
 
 # A list of the modules to build.
 modules = [ 'evince' ]
