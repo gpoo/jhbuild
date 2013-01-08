@@ -11,13 +11,116 @@
       href="git://anongit.freedesktop.org/git/poppler/"/>
   <repository type="git" name="git.cairographics.org"
       href="git://git.cairographics.org/git/"/>
+<repository type="git" name="git.freedesktop.org"
+    href="git://anongit.freedesktop.org/"/>
+
+<!-- Base packages since evince 3.7.x -->
+  <autotools id="atk">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gobject-introspection">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="cairo"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gdk-pixbuf">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gtk+">
+    <branch/>
+    <dependencies>
+      <dep package="atk"/>
+      <dep package="glib"/>
+      <dep package="cairo"/>
+      <dep package="pango"/>
+      <dep package="gdk-pixbuf"/>
+      <dep package="gobject-introspection"/>
+      <dep package="at-spi2-atk"/>
+    </dependencies>
+    <!-- <suggests>
+      <dep package="shared-mime-info"/>
+    </suggests> -->
+  </autotools>
+
+  <autotools id="at-spi2-core">
+    <branch/>
+    <dependencies>
+<!--      <dep package="dbus"/> -->
+      <dep package="glib"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="at-spi2-atk">
+    <branch/>
+    <dependencies>
+      <!-- <dep package="dbus"/> -->
+      <dep package="glib"/>
+      <dep package="atk"/>
+      <dep package="at-spi2-core"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="pango">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="cairo"/>
+      <dep package="gobject-introspection"/>
+      <dep package="harfbuzz"/>
+      <!-- <dep package="libXft"/> -->
+    </dependencies>
+  </autotools>
+
+  <autotools id="harfbuzz" autogenargs="">
+    <branch repo="git.freedesktop.org"
+      module="harfbuzz" checkoutdir="harfbuzz"/>
+    <dependencies>
+      <dep package="glib"/>
+      <!-- <dep package="ragel"/> -->
+    </dependencies>
+  </autotools>
+
+<!-- GNOME Themes, otherwise evince looks ugly -->
+  <autotools id="gnome-themes-standard">
+    <branch/>
+    <dependencies>
+      <!-- <dep package="cantarell-fonts"/> -->
+      <dep package="librsvg"/>
+      <dep package="gtk+"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="librsvg" supports-non-srcdir-builds="no" autogenargs="--disable-gtk-theme">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gdk-pixbuf"/>
+      <!--
+			<dep package="gnome-common"/>
+      <dep package="libcroco"/>
+			-->
+    </dependencies>
+  </autotools>
 
 <!-- packages -->
   <autotools id="evince" autogenargs="--enable-introspection"
                          supports-parallel-builds="no">
     <branch/>
     <dependencies>
-      <dep package="glib"/>
+      <dep package="gtk+"/>
       <dep package="poppler"/>
     </dependencies>
     <!--
@@ -28,11 +131,12 @@
   </autotools>
 
   <autotools id="glib">
-    <branch revision="glib-2-34"/>
+    <branch />
+    <!-- <branch revision="glib-2-34"/> -->
     <suggests>
       <!-- these provide gnome implementations of glib
            extension points -->
-      <dep package="gvfs"/>
+      <!-- <dep package="gvfs"/> -->
       <!-- <dep package="glib-networking"/> -->
     </suggests>
   </autotools>
