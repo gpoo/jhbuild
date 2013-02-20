@@ -11,8 +11,10 @@
       href="git://anongit.freedesktop.org/git/poppler/"/>
   <repository type="git" name="git.cairographics.org"
       href="git://git.cairographics.org/git/"/>
-<repository type="git" name="git.freedesktop.org"
+  <repository type="git" name="git.freedesktop.org"
     href="git://anongit.freedesktop.org/"/>
+  <repository type="git" name="libspectre.freedesktop.org"
+      href="git://anongit.freedesktop.org/git/"/>
 
 <!-- Base packages since evince 3.7.x -->
   <autotools id="atk">
@@ -114,7 +116,7 @@
 			-->
     </dependencies>
   </autotools>
-
+libspectre
 <!-- packages -->
   <autotools id="evince" autogenargs="--enable-introspection"
                          supports-parallel-builds="no">
@@ -172,6 +174,41 @@
       <dep package="pixman"/>
     </dependencies>
 		-->
+  </autotools>
+
+
+  <autotools id="libspectre" autogenargs="">
+    <branch repo="libspectre.freedesktop.org" />
+    <!--  module="git" checkoutdir="libspectre"/>-->
+    <dependencies>
+      <!-- <dep package="ragel"/> -->
+    </dependencies>
+  </autotools>
+
+  <autotools id="gtkparasite">
+    <branch/>
+    <dependencies>
+      <dep package="gtk+"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="vala" autogenargs="--enable-vapigen" supports-non-srcdir-builds="no">
+    <branch/>
+    <pkg-config>libvala-0.20.pc</pkg-config>
+    <dependencies>
+      <dep package="glib"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="dconf">
+    <branch revision="dconf-0.14" />
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gtk+"/>
+      <!-- <dep package="dbus"/>
+      <dep package="vala"/>
+      <dep package="libxml2"/> -->
+    </dependencies>
   </autotools>
 
 </moduleset>
