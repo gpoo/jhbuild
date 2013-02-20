@@ -10,7 +10,7 @@
 moduleset = 'https://raw.github.com/gpoo/jhbuild/master/evince.modules'
 
 # A list of the modules to build.
-modules = [ 'evince' ]
+modules = [ 'evince', 'gnome-themes-standard' ]
 
 # what directory should the source be checked out to?
 checkoutroot = os.path.join(os.environ['HOME'], 'code', 'evince', 'checkout')
