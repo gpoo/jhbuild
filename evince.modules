@@ -16,9 +16,9 @@
   <repository type="git" name="libspectre.freedesktop.org"
       href="git://anongit.freedesktop.org/git/"/>
 
-<!-- Base packages since evince 3.7.x -->
+<!-- Base packages since evince 3.8 -->
   <autotools id="atk">
-    <branch/>
+    <branch revision="gnome-3-8"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -26,7 +26,7 @@
   </autotools>
 
   <autotools id="gobject-introspection">
-    <branch/>
+    <branch revision="gnome-3-8"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="cairo"/>
@@ -34,7 +34,7 @@
   </autotools>
 
   <autotools id="gdk-pixbuf">
-    <branch/>
+    <branch revision="gdk-pixbuf-2-28"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -42,7 +42,7 @@
   </autotools>
 
   <autotools id="gtk+">
-    <branch/>
+    <branch revision="gtk-3-8"/>
     <dependencies>
       <dep package="atk"/>
       <dep package="glib"/>
@@ -58,7 +58,7 @@
   </autotools>
 
   <autotools id="at-spi2-core">
-    <branch/>
+    <branch revision="gnome-3-8"/>
     <dependencies>
 <!--      <dep package="dbus"/> -->
       <dep package="glib"/>
@@ -66,7 +66,7 @@
   </autotools>
 
   <autotools id="at-spi2-atk">
-    <branch/>
+    <branch revision="gnome-3-8"/>
     <dependencies>
       <!-- <dep package="dbus"/> -->
       <dep package="glib"/>
@@ -82,7 +82,7 @@
       <dep package="cairo"/>
       <dep package="gobject-introspection"/>
       <dep package="harfbuzz"/>
-      <!-- <dep package="libXft"/> -->
+      <dep package="fontconfig"/>
     </dependencies>
   </autotools>
 
@@ -95,9 +95,16 @@
     </dependencies>
   </autotools>
 
+  <autotools id="fontconfig" autogenargs="--disable-docs">
+    <branch repo="git.freedesktop.org"/>
+    <dependencies>
+      <!-- <dep package="gperf"/> -->
+    </dependencies>
+  </autotools>
+
 <!-- GNOME Themes, otherwise evince looks ugly -->
   <autotools id="gnome-themes-standard">
-    <branch/>
+    <branch revision="gnome-3-8"/>
     <dependencies>
       <!-- <dep package="cantarell-fonts"/> -->
       <dep package="librsvg"/>
@@ -116,7 +123,7 @@
 			-->
     </dependencies>
   </autotools>
-libspectre
+
 <!-- packages -->
   <autotools id="evince" autogenargs="--enable-introspection"
                          supports-parallel-builds="no">
@@ -133,8 +140,7 @@ libspectre
   </autotools>
 
   <autotools id="glib">
-    <branch />
-    <!-- <branch revision="glib-2-34"/> -->
+    <branch revision="glib-2-36"/>
     <suggests>
       <!-- these provide gnome implementations of glib
            extension points -->
@@ -157,23 +163,21 @@ libspectre
     <dependencies>
       <dep package="glib"/>
       <dep package="cairo"/>
-      <!-- <dep package="poppler-data"/> -->
+      <dep package="poppler-data"/>
     </dependencies>
   </autotools>
 
-  <autotools id="poppler-data">
+  <cmake id="poppler-data">
     <branch repo="poppler.freedesktop.org" />
-  </autotools>
+  </cmake>
 
   <autotools id="cairo" autogenargs="--enable-xlib">
     <pkg-config>cairo.pc</pkg-config>
-    <branch repo="git.cairographics.org" revision="1.12.14" />
-    <!--
-		<dependencies>
+    <branch repo="git.cairographics.org" revision="1.12" />
+    <dependencies>
       <dep package="fontconfig"/>
-      <dep package="pixman"/>
+      <!-- <dep package="pixman"/> -->
     </dependencies>
-		-->
   </autotools>
 
 
@@ -193,21 +197,20 @@ libspectre
   </autotools>
 
   <autotools id="vala" autogenargs="--enable-vapigen" supports-non-srcdir-builds="no">
-    <branch/>
-    <pkg-config>libvala-0.20.pc</pkg-config>
+    <branch revision="0.18"/>
     <dependencies>
       <dep package="glib"/>
     </dependencies>
   </autotools>
 
   <autotools id="dconf">
-    <branch revision="dconf-0.14" />
+    <branch revision="dconf-0.16" />
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <!-- <dep package="dbus"/>
+      <!-- <dep package="dbus"/> -->
       <dep package="vala"/>
-      <dep package="libxml2"/> -->
+      <!-- <dep package="libxml2"/> -->
     </dependencies>
   </autotools>
 
