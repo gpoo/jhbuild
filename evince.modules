@@ -25,6 +25,13 @@
     </dependencies>
   </autotools>
 
+  <autotools id="libsecret">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="gobject-introspection">
     <branch revision="gnome-3-8"/>
     <dependencies>
@@ -131,6 +138,7 @@
     <dependencies>
       <dep package="gtk+"/>
       <dep package="poppler"/>
+      <dep package="libsecret"/>
     </dependencies>
     <!--
 		<suggests>
