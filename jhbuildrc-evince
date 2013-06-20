@@ -20,14 +20,14 @@ prefix = os.path.join(os.environ['HOME'], 'code', 'evince', 'install')
 
 # extra arguments to pass to all autogen.sh scripts
 # to speed up builds, try '--disable-static --disable-gtk-doc'
-autogenargs='--disable-gtk-doc'
+autogenargs='--disable-gtk-doc '
 
 # set CFLAGS:
 os.environ['CFLAGS'] = '-g -O2'
 
 # On SMP systems you may use something like this to improve compilation time:
 # be aware that not all modules compile correctly with make -j2
-os.environ['MAKE'] = 'make -j4'
+# makeargs = '-j4'
 
 # Tips from Vincent Untz
 # http://www.vuntz.net/journal/post/2010/09/23/My-love-for-jhbuild
