@@ -38,3 +38,5 @@ os.environ['CFLAGS'] = '-g -O2'
 module_autogenargs['evince'] = autogenargs + ' --disable-nautilus ' + \
                                '--without-keyring --enable-debug ' + \
                                '--disable-introspection '
+module_autogenargs['gnome-themes-standard'] = autogenargs + \
+                               ' --disable-gtk2-engine '
