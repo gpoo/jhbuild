@@ -25,6 +25,9 @@ autogenargs='--disable-gtk-doc '
 # set CFLAGS:
 os.environ['CFLAGS'] = '-g -O2'
 
+# to speed up builds, only build the default documentation language
+os.environ['LINGUAS'] = ''
+ 
 # On SMP systems you may use something like this to improve compilation time:
 # be aware that not all modules compile correctly with make -j2
 # makeargs = '-j4'
@@ -36,7 +39,10 @@ os.environ['CFLAGS'] = '-g -O2'
 
 ## Module options
 module_autogenargs['evince'] = autogenargs + ' --disable-nautilus ' + \
-                               '--without-keyring --enable-debug ' + \
-                               '--disable-introspection '
+                               '--without-keyring --enable-debug '
 module_autogenargs['gnome-themes-standard'] = autogenargs + \
                                ' --disable-gtk2-engine '
+module_autogenargs['libsecret'] = autogenargs + \
+                               ' --disable-vala '
+module_autogenargs['librsvg'] = autogenargs + \
+                               ' --disable-introspection '
