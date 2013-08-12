@@ -13,10 +13,10 @@ moduleset = 'https://raw.github.com/gpoo/jhbuild/master/evince.modules'
 modules = [ 'evince', 'gnome-themes-standard', 'dconf', 'gvfs' ]
 
 # what directory should the source be checked out to?
-checkoutroot = os.path.join(os.environ['HOME'], 'code', 'evince', 'checkout')
+checkoutroot = os.path.join(os.environ['HOME'], 'jhbuild', 'evince', 'checkout')
 
 # the prefix to configure/install modules to (must have write access)
-prefix = os.path.join(os.environ['HOME'], 'code', 'evince', 'install')
+prefix = os.path.join(os.environ['HOME'], 'jhbuild', 'evince', 'install')
 
 # extra arguments to pass to all autogen.sh scripts
 # to speed up builds, try '--disable-static --disable-gtk-doc'

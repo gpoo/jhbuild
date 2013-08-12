@@ -26,8 +26,8 @@ for evince (poppler, a newer glib and evince itself):
     $ jhbuild -f jhbuildrc-evince build
     $ jhbuild -f jhbuildrc-evince run evince
 
-The source code will be downloaded to your `$HOME/code/evince/checkout` and
-installed in `$HOME/code/evince/install`.
+The source code will be downloaded to your `$HOME/jhbuild/evince/checkout` and
+installed in `$HOME/jhbuild/evince/install`.
 
   [1]: http://projects.gnome.org/evince/
 
