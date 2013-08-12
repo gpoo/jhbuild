@@ -131,6 +131,13 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gnome-icon-theme-symbolic">
+    <branch/>
+    <dependencies>
+      <dep package="gtk+"/>
+    </dependencies>
+  </autotools>
+
 <!-- packages -->
   <autotools id="evince" autogenargs="--enable-introspection"
                          supports-parallel-builds="no">
@@ -139,6 +146,7 @@
       <dep package="gtk+"/>
       <dep package="poppler"/>
       <dep package="libsecret"/>
+      <dep package="gnome-icon-theme-symbolic"/>
     </dependencies>
     <!--
 		<suggests>
