@@ -189,7 +189,7 @@
 
   <autotools id="cairo" autogenargs="--enable-xlib">
     <pkg-config>cairo.pc</pkg-config>
-    <branch repo="git.cairographics.org" />
+    <branch repo="git.cairographics.org" revision="1.12" />
     <dependencies>
       <dep package="fontconfig"/>
       <!-- <dep package="pixman"/> -->
