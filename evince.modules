@@ -196,6 +196,9 @@
     </dependencies>
   </autotools>
 
+  <autotools id="pixman" autogenargs="--disable-gtk">
+    <branch repo="git.freedesktop.org" revision="0.30"/>
+  </autotools>
 
   <autotools id="libspectre" autogenargs="">
     <branch repo="libspectre.freedesktop.org" />
