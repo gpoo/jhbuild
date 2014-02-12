@@ -4,6 +4,14 @@
 # or use it with:
 #   $ jhbuild -f this-jhbuild-file
 
+
+# If you are behind a firewall that has blocked the port 9418
+# (for example, you get connection time out to git.gnome.org),
+# then uncomment the following lines:
+# repos['git.gnome.org']='https://git.gnome.org/browse/'
+# repos['git.freedesktop.org']= 'http://anongit.freedesktop.org/git/'
+# repos['poppler.freedesktop.org'] = 'http://anongit.freedesktop.org/git/poppler/'
+
 # what module set should be used.
 # but it can be any of the files in the modulesets directory, or even
 # the URL of a module set file on a web server.
