@@ -8,13 +8,9 @@
   <repository type="git" name="git.gnome.org" default="yes"
       href="git://git.gnome.org/"/>
   <repository type="git" name="poppler.freedesktop.org"
-      href="git://anongit.freedesktop.org/git/poppler/"/>
-  <repository type="git" name="git.cairographics.org"
-      href="git://git.cairographics.org/git/"/>
+      href="git://anongit.freedesktop.org/poppler/"/>
   <repository type="git" name="git.freedesktop.org"
     href="git://anongit.freedesktop.org/"/>
-  <repository type="git" name="libspectre.freedesktop.org"
-      href="git://anongit.freedesktop.org/git/"/>
 
 <!-- Base packages since evince 3.8 -->
   <autotools id="atk">
@@ -189,7 +185,7 @@
 
   <autotools id="cairo" autogenargs="--enable-xlib">
     <pkg-config>cairo.pc</pkg-config>
-    <branch repo="git.cairographics.org" revision="1.12" />
+    <branch repo="git.freedesktop.org" revision="1.12" />
     <dependencies>
       <dep package="fontconfig"/>
       <!-- <dep package="pixman"/> -->
@@ -201,7 +197,7 @@
   </autotools>
 
   <autotools id="libspectre" autogenargs="">
-    <branch repo="libspectre.freedesktop.org" />
+    <branch repo="git.freedesktop.org" />
     <!--  module="git" checkoutdir="libspectre"/>-->
     <dependencies>
       <!-- <dep package="ragel"/> -->
