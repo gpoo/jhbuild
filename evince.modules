@@ -152,7 +152,7 @@
   </autotools>
 
   <autotools id="glib">
-    <branch revision="glib-2-36"/>
+    <branch revision="glib-2-38"/>
     <suggests>
       <!-- these provide gnome implementations of glib
            extension points -->
