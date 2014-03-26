@@ -45,7 +45,7 @@
   </autotools>
 
   <autotools id="gtk+">
-    <branch revision="gtk-3-8"/>
+    <branch revision="gtk-3-10"/>
     <dependencies>
       <dep package="atk"/>
       <dep package="glib"/>
