@@ -127,6 +127,13 @@
     </dependencies>
   </autotools>
 
+  <autotools id="adwaita-icon-theme">
+    <branch/>
+    <dependencies>
+      <dep package="gtk+"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="gnome-icon-theme-symbolic">
     <branch/>
     <dependencies>
@@ -142,7 +149,7 @@
       <dep package="gtk+"/>
       <dep package="poppler"/>
       <dep package="libsecret"/>
-      <dep package="gnome-icon-theme-symbolic"/>
+      <dep package="adwaita-icon-theme"/>
     </dependencies>
     <!--
 		<suggests>
