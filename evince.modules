@@ -6,124 +6,52 @@
 
 <!-- git repos -->
   <repository type="git" name="git.gnome.org" default="yes"
-      href="git://git.gnome.org/"/>
+      href="git://gitlab.gnome.org"/>
   <repository type="git" name="poppler.freedesktop.org"
       href="git://anongit.freedesktop.org/poppler/"/>
   <repository type="git" name="git.freedesktop.org"
     href="git://anongit.freedesktop.org/"/>
+  <repository type="git" name="github.com"
+    href="git://github.com"/>
 
-<!-- Base packages since evince 3.8 -->
-  <autotools id="atk">
-    <branch revision="gnome-3-8"/>
+   <meson id="graphene">
+     <branch repo="github.com"
+      module="ebassi/graphene.git" />
+     <dependencies>
+         <!--       <dep package="glib"/> -->
+     </dependencies>
+  </meson>
+
+  <meson id="gdk-pixbuf"
+         mesonargs="-Dintrospection=false">
+    <branch repo="git.gnome.org" module="gdk-pixbuf.git" />
     <dependencies>
-      <dep package="glib"/>
-      <dep package="gobject-introspection"/>
+        <!--      <dep package="glib"/>-->
     </dependencies>
+  </meson>
+
+  <autotools id="gtk">
+    <branch revision="gtk-3-24"/>
   </autotools>
 
-  <autotools id="libsecret">
-    <branch/>
+  <meson id="gtk4"
+         mesonargs="-Dgtk_doc=true">
+    <branch repo="git.gnome.org" module="gtk.git"/>
     <dependencies>
-      <dep package="glib"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gobject-introspection">
-    <branch revision="gnome-3-8"/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="cairo"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gdk-pixbuf">
-    <branch revision="gdk-pixbuf-2-28"/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="gobject-introspection"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gtk+">
-    <branch revision="gtk-3-10"/>
-    <dependencies>
-      <dep package="atk"/>
-      <dep package="glib"/>
-      <dep package="cairo"/>
-      <dep package="pango"/>
+      <dep package="pango"/>-->
       <dep package="gdk-pixbuf"/>
-      <dep package="gobject-introspection"/>
-      <dep package="at-spi2-atk"/>
+      <dep package="graphene"/>
     </dependencies>
-    <!-- <suggests>
-      <dep package="shared-mime-info"/>
-    </suggests> -->
-  </autotools>
-
-  <autotools id="at-spi2-core">
-    <branch revision="gnome-3-8"/>
-    <dependencies>
-<!--      <dep package="dbus"/> -->
-      <dep package="glib"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="at-spi2-atk">
-    <branch revision="gnome-3-8"/>
-    <dependencies>
-      <!-- <dep package="dbus"/> -->
-      <dep package="glib"/>
-      <dep package="atk"/>
-      <dep package="at-spi2-core"/>
-    </dependencies>
-  </autotools>
+  </meson>
 
   <autotools id="pango">
     <branch/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="cairo"/>
-      <dep package="gobject-introspection"/>
-      <dep package="harfbuzz"/>
-      <dep package="fontconfig"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="harfbuzz" autogenargs="">
-    <branch repo="git.freedesktop.org"
-      module="harfbuzz" checkoutdir="harfbuzz"/>
-    <dependencies>
-      <dep package="glib"/>
-      <!-- <dep package="ragel"/> -->
-    </dependencies>
-  </autotools>
-
-  <autotools id="fontconfig" autogenargs="--disable-docs">
-    <branch repo="git.freedesktop.org"/>
-    <dependencies>
-      <!-- <dep package="gperf"/> -->
-    </dependencies>
   </autotools>
 
 <!-- GNOME Themes, otherwise evince looks ugly -->
   <autotools id="gnome-themes-standard">
-    <branch revision="gnome-3-8"/>
+    <branch revision="master"/>
     <dependencies>
-      <!-- <dep package="cantarell-fonts"/> -->
-      <dep package="librsvg"/>
-      <dep package="gtk+"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="librsvg" supports-non-srcdir-builds="no" autogenargs="--disable-gtk-theme">
-    <branch/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="gdk-pixbuf"/>
-      <!--
-			<dep package="gnome-common"/>
-      <dep package="libcroco"/>
-			-->
     </dependencies>
   </autotools>
 
@@ -141,50 +69,41 @@
     </dependencies>
   </autotools>
 
-<!-- packages -->
-  <autotools id="evince" autogenargs="--enable-introspection"
-                         supports-parallel-builds="no">
+  <meson id="evince"
+         mesonargs="-Dgtk_doc=false -Duser_doc=false">
     <branch/>
     <dependencies>
-      <dep package="gtk+"/>
       <dep package="poppler"/>
-      <dep package="libsecret"/>
-      <dep package="adwaita-icon-theme"/>
     </dependencies>
-    <!--
-		<suggests>
-      <dep package="libgnome-keyring"/>
-    </suggests>
-		-->
-  </autotools>
-
-  <autotools id="glib">
-    <branch revision="glib-2-38"/>
     <suggests>
-      <!-- these provide gnome implementations of glib
-           extension points -->
-      <!-- <dep package="gvfs"/> -->
-      <!-- <dep package="glib-networking"/> -->
+      <dep package="dconf"/>
+    </suggests>
+  </meson>
+
+  <autotools id="evince-auto" autogenargs="--disable-introspection"
+                         supports-parallel-builds="no">
+    <branch repo="git.gnome.org" module="evince.git"/>
+    <dependencies>
+      <dep package="poppler"/>
+    </dependencies>
+    <suggests>
+      <dep package="dconf"/>
     </suggests>
   </autotools>
 
-  <autotools id="gvfs">
-    <branch revision="gnome-3-4"/>
-    <dependencies>
-      <dep package="glib"/>
-    </dependencies>
-  </autotools>
+  <meson id="glib"
+         mesonargs="-Dlibmount=disabled -Dselinux=disabled">
+    <branch repo="git.gnome.org" module="glib.git"/>
+  </meson>
 
-  <autotools id="poppler" autogenargs="--enable-xpdf-headers"
-	                        makeargs="POPPLER_GLIB_DISABLE_DEPRECATED=">
+  <cmake id="poppler" cmakeargs="--enable-xpdf-headers"
+	                    makeargs="POPPLER_GLIB_DISABLE_DEPRECATED=">
     <pkg-config>poppler-glib.pc</pkg-config>
     <branch repo="poppler.freedesktop.org" />
     <dependencies>
-      <dep package="glib"/>
-      <dep package="cairo"/>
       <dep package="poppler-data"/>
     </dependencies>
-  </autotools>
+  </cmake>
 
   <cmake id="poppler-data">
     <branch repo="poppler.freedesktop.org" />
@@ -192,48 +111,19 @@
 
   <autotools id="cairo" autogenargs="--enable-xlib">
     <pkg-config>cairo.pc</pkg-config>
-    <branch repo="git.freedesktop.org" revision="1.12" />
+    <branch repo="git.freedesktop.org" />
     <dependencies>
       <dep package="fontconfig"/>
-      <!-- <dep package="pixman"/> -->
     </dependencies>
-  </autotools>
-
-  <autotools id="pixman" autogenargs="--disable-gtk">
-    <branch repo="git.freedesktop.org" revision="0.30"/>
   </autotools>
 
   <autotools id="libspectre" autogenargs="">
     <branch repo="git.freedesktop.org" />
-    <!--  module="git" checkoutdir="libspectre"/>-->
-    <dependencies>
-      <!-- <dep package="ragel"/> -->
-    </dependencies>
   </autotools>
 
-  <autotools id="gtkparasite">
-    <branch/>
-    <dependencies>
-      <dep package="gtk+"/>
-    </dependencies>
-  </autotools>
 
-  <autotools id="vala" autogenargs="--enable-vapigen" supports-non-srcdir-builds="no">
-    <branch revision="0.18"/>
-    <dependencies>
-      <dep package="glib"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="dconf">
-    <branch revision="dconf-0.16" />
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="gtk+"/>
-      <!-- <dep package="dbus"/> -->
-      <dep package="vala"/>
-      <!-- <dep package="libxml2"/> -->
-    </dependencies>
-  </autotools>
+  <meson id="dconf">
+    <branch revision="master" />
+  </meson>
 
 </moduleset>
